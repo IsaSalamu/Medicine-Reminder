@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="drug reminder"
         android:textAllCaps="true"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,15 +66,28 @@
 
     <Button
         android:id="@+id/btn_save_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Set Reminder"
-        android:textSize="20dp"
+        android:layout_width="135dp"
+        android:layout_height="59dp"
+        android:text="Show"
+        android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintHorizontal_bias="0.072"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/times_days_id"
-        app:layout_constraintVertical_bias="0.797" />
+        app:layout_constraintVertical_bias="0.743" />
+
+    <Button
+        android:id="@+id/btn_set_alarm"
+        android:layout_width="135dp"
+        android:layout_height="59dp"
+        android:text="Set"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.842"
+        app:layout_constraintStart_toEndOf="@+id/btn_save_details"
+        app:layout_constraintTop_toBottomOf="@+id/times_days_id"
+        app:layout_constraintVertical_bias="0.743" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,14 +1,14 @@
 package com.example.medicineremindertwo;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-public class set_alarms extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class New_Welcome_Page extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set_alarms);
+        setContentView(R.layout.activity_new__welcome__page);
     }
 }

@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicineReminderTwo">
-        <activity android:name=".set_alarms"></activity>
+        <activity android:name=".new_add_medicine"></activity>
+        <activity android:name=".New_Welcome_Page" />
         <activity android:name=".set_daily_intake" />
-        <activity android:name=".add_drug" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
