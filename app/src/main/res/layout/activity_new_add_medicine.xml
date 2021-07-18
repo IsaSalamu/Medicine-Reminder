@@ -60,7 +60,7 @@
         </LinearLayout>
 
         <!-- vertical ScrollView to make all the items or views scrollable -->
-        <ScrollView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
 
             android:layout_height="match_parent"
@@ -164,6 +164,40 @@
                         android:src="@drawable/ic_baseline_repeat_24" />
 
                     <Button
+                        android:id="@+id/set_time"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1.4"
+                        android:background="@color/editTextBack"
+                        android:imeOptions="actionNext"
+                        android:paddingLeft="10dp"
+                        android:singleLine="true"
+                        android:text="set time"
+                        android:textAllCaps="false"
+                        android:textColor="#EBE9E9" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/thirdLayout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <!-- place one TextView and one EditText inside layout using weight property -->
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="0.6"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:src="@drawable/ic_baseline_repeat_24" />
+
+                    <Button
                         android:id="@+id/set_alarm"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
@@ -191,7 +225,7 @@
 
 
             </LinearLayout>
-        </ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

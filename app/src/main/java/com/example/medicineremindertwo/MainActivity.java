@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     DrugsDatabase drugsDatabase;
     String[] drug_names = {"Bactrime", "Amoxillyne","Cipro","Abendazole","Doxycyline"};
     Integer number_of_drugs = 0;
+
     public static String[] predefined_times = {"m,e", "m,n,e","m,e","m,e","m,n,e"};
     Integer start_time = 0;
     Date starting_date;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent addDrug=new Intent(MainActivity.this, new_add_medicine.class);
+                Intent addDrug = new Intent(MainActivity.this, new_add_medicine.class);
                 startActivity(addDrug);
             }
         },3000);

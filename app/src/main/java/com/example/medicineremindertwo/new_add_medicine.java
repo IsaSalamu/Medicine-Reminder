@@ -1,17 +1,21 @@
 package com.example.medicineremindertwo;
 
+import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.AlarmClock;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
+import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class new_add_medicine extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -19,15 +23,28 @@ public class new_add_medicine extends AppCompatActivity implements AdapterView.O
     EditText add_drug, id_number_of_days, drugs_quantities;
     Spinner spinner;
     String[] drugs = {"Bactrime", "Amoxillyne","Cipro","Abendazole","Doxycyline"};
-    Button set_alarm;
+
     String date, time;
     String final_date_format, final_time_format, am_pm, predef_time;
     String drug;
     DrugsDatabase drugsDatabase;
+
+    /*button to sete time and alarm*/
+
+    Button set_time, set_alarm;
+
+    /*declaring alarm variables*/
+    int hr, min, hour, minutes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_add_medicine);
+
+        /*calender settings*/
+        Calendar calendar = Calendar.getInstance();
+        hr = calendar.get(Calendar.HOUR_OF_DAY);
+        min=calendar.get(Calendar.MINUTE);
 
         drugsDatabase = new DrugsDatabase(this);
 
@@ -42,25 +59,46 @@ public class new_add_medicine extends AppCompatActivity implements AdapterView.O
         drugs_quantities = (EditText) findViewById(R.id.drugs_quantities);
 
         set_alarm = (Button) findViewById(R.id.set_alarm);
+        set_time = (Button) findViewById(R.id.set_time);
+
+        set_time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Toast.makeText(getApplicationContext(),"clicked", Toast.LENGTH_SHORT).show();
+                setAlarmTime();
+            }
+        });
+
         set_alarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDateAndTime();
-                String name = add_drug.getText().toString();
-                String num_of_days = id_number_of_days.getText().toString();
-                String drugs_quantity = drugs_quantities.getText().toString();
+                setAlarm();
+//                setDateAndTime();
+//                String name = add_drug.getText().toString();
 
-                if (!num_of_days.isEmpty()) {
-                    drugsDatabase.insertDrugs(drug, Integer.parseInt(num_of_days), Integer.parseInt(drugs_quantity), Integer.parseInt(final_time_format), Integer.parseInt(final_date_format), predef_time);
-                    add_drug.setText(drug);
-                    Toast.makeText(getApplicationContext(), "Uploaded goodly", Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(getApplicationContext(), "Uploaded badly", Toast.LENGTH_SHORT).show();
+//                String num_of_days = id_number_of_days.getText().toString();
 
-                }
+//                String drugs_quantity = drugs_quantities.getText().toString();
+
+//                if (!num_of_days.isEmpty()) {
+//                    drugsDatabase.insertDrugs(drug, Integer.parseInt(num_of_days), Integer.parseInt(drugs_quantity), Integer.parseInt(final_time_format), Integer.parseInt(final_date_format), predef_time);
+//                    add_drug.setText(drug);
+//                    Toast.makeText(getApplicationContext(), "Uploaded goodly", Toast.LENGTH_SHORT).show();
+//                }else {
+//                    Toast.makeText(getApplicationContext(), "Uploaded badly", Toast.LENGTH_SHORT).show();
+//
+//                }
             }
         });
+
+        /* calling alarm method*/
+
+
+
+
     }
+
+
 
     public void setDateAndTime(){
         date =  DateFormat.getDateInstance().format(new Date());
@@ -86,6 +124,31 @@ public class new_add_medicine extends AppCompatActivity implements AdapterView.O
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+    /*method of time picker to set time*/
+    public void setAlarmTime(){
+        TimePickerDialog timePickerDialog = new TimePickerDialog(new_add_medicine.this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                hour = hourOfDay;
+                minutes = minute;
+            }
+        }, hr,min,true);
+        timePickerDialog.show();
+    }
+
+    //method to set alarm
+
+    public void setAlarm(){
+        Intent alarm = new Intent(AlarmClock.ACTION_SET_ALARM);
+        alarm.putExtra(AlarmClock.EXTRA_HOUR, hour);
+        alarm.putExtra(AlarmClock.EXTRA_MINUTES, minutes);
+        alarm.putExtra(AlarmClock.EXTRA_MESSAGE,"please take your medicine");
+        startActivity(alarm);
+
+    }
+
+
 
 
 }
