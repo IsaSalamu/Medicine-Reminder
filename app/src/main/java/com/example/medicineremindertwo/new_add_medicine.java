@@ -2,6 +2,7 @@ package com.example.medicineremindertwo;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.AlarmClock;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.TimePicker;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -22,15 +24,19 @@ public class new_add_medicine extends AppCompatActivity implements AdapterView.O
 
     EditText add_drug, id_number_of_days, drugs_quantities;
     Spinner spinner;
-    String[] drugs = {"Bactrime", "Amoxillyne","Cipro","Abendazole","Doxycyline"};
-
+//    String[] drugs = {"Bactrime", "Amoxillyne","Cipro","Abendazole","Doxycyline"};
+    String[] drugs = {};
     String date, time;
     String final_date_format, final_time_format, am_pm, predef_time;
     String drug;
+
     DrugsDatabase drugsDatabase;
 
-    /*button to sete time and alarm*/
+    ArrayList<String> alarm_drug_names; //what was important
 
+
+
+    /*button to set time and alarm*/
     Button set_time, set_alarm;
 
     /*declaring alarm variables*/
@@ -40,19 +46,15 @@ public class new_add_medicine extends AppCompatActivity implements AdapterView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_add_medicine);
-
+        alarm_drug_names = new ArrayList<String>(); //what was important 2
         /*calender settings*/
         Calendar calendar = Calendar.getInstance();
         hr = calendar.get(Calendar.HOUR_OF_DAY);
         min=calendar.get(Calendar.MINUTE);
 
-        drugsDatabase = new DrugsDatabase(this);
+        drugsDatabase = new DrugsDatabase(new_add_medicine.this);
 
         spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, drugs);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(arrayAdapter);
-        spinner.setOnItemSelectedListener(this);
 
         add_drug = (EditText) findViewById(R.id.add_drug);
         id_number_of_days = (EditText) findViewById(R.id.id_number_of_days);
@@ -60,6 +62,8 @@ public class new_add_medicine extends AppCompatActivity implements AdapterView.O
 
         set_alarm = (Button) findViewById(R.id.set_alarm);
         set_time = (Button) findViewById(R.id.set_time);
+
+        display_drugs();
 
         set_time.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,21 +77,6 @@ public class new_add_medicine extends AppCompatActivity implements AdapterView.O
             @Override
             public void onClick(View v) {
                 setAlarm();
-//                setDateAndTime();
-//                String name = add_drug.getText().toString();
-
-//                String num_of_days = id_number_of_days.getText().toString();
-
-//                String drugs_quantity = drugs_quantities.getText().toString();
-
-//                if (!num_of_days.isEmpty()) {
-//                    drugsDatabase.insertDrugs(drug, Integer.parseInt(num_of_days), Integer.parseInt(drugs_quantity), Integer.parseInt(final_time_format), Integer.parseInt(final_date_format), predef_time);
-//                    add_drug.setText(drug);
-//                    Toast.makeText(getApplicationContext(), "Uploaded goodly", Toast.LENGTH_SHORT).show();
-//                }else {
-//                    Toast.makeText(getApplicationContext(), "Uploaded badly", Toast.LENGTH_SHORT).show();
-//
-//                }
             }
         });
 
@@ -148,7 +137,25 @@ public class new_add_medicine extends AppCompatActivity implements AdapterView.O
 
     }
 
-
+//    PLEASE SIR HELP ME WITH THE CODE BELOW, IAM FAILING TO DISPLAY DATA IN THE SPINNER
+//method to display drugs from database in spinner
+    public void display_drugs(){
+//        Spinner spin_drugs = (Spinner) findViewById(R.id.spinner);
+        Cursor cursor = drugsDatabase.getDrugs();
+        while (cursor.moveToNext()) {
+            alarm_drug_names.add(cursor.getString(1).toString());
+        }
+        drugs = new String[alarm_drug_names.size()];
+//
+        for (int x=0; x < alarm_drug_names.size(); x++){
+                drugs[x] = alarm_drug_names.get(x);
+            }
+//
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, drugs);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+    }
 
 
 }
