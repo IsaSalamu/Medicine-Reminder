@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.medicineremindertwo">
 
-    //permissions for alarms
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
 
     <application
@@ -12,9 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicineReminderTwo">
-        <activity android:name=".new_add_medicine"></activity>
-        <activity android:name=".New_Welcome_Page" />
-        <activity android:name=".set_daily_intake" />
+        <activity android:name=".ListOfReminders"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
