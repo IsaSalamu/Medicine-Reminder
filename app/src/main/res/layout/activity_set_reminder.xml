@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="30dp"
     android:background="@drawable/background"
-    tools:context=".MainActivity">
+    tools:context=".SetReminder">
 
     <EditText
         android:id="@+id/drug_name_editText"

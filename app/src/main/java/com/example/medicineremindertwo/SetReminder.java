@@ -1,6 +1,5 @@
 package com.example.medicineremindertwo;
 
-
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
@@ -38,19 +37,18 @@ public class SetReminder extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.reminders:
-                Intent reminderIntent = new Intent(com.example.medicineremindertwo.SetReminder.this, ListOfReminders.class);
+                Intent reminderIntent = new Intent(SetReminder.this, ListOfReminders.class);
                 startActivity(reminderIntent);
                 return true;
             default:
-
                 return super.onOptionsItemSelected(item);
         }
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        databaseController = new DatabaseController(com.example.medicineremindertwo.SetReminder.this);
+        setContentView(R.layout.activity_set_reminder);
+        databaseController = new DatabaseController(SetReminder.this);
 
         drug_name_editText= (EditText) findViewById(R.id.drug_name_editText);
         btnSetTime = (Button) findViewById(R.id.btnSetTime);
@@ -71,7 +69,7 @@ public class SetReminder extends AppCompatActivity {
         btnSetTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TimePickerDialog timePickerDialog = new TimePickerDialog(com.example.medicineremindertwo.SetReminder.this, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(SetReminder.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         finalHour = hourOfDay;

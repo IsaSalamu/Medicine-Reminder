@@ -27,7 +27,7 @@ public class ListOfReminders extends AppCompatActivity {
 
         Cursor cursor = databaseController.getDrugs();
         if (cursor.getCount() == 0){
-            Toast.makeText(getApplicationContext(),"no data", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"No reminders set yet", Toast.LENGTH_SHORT).show();
         }else {
             while (cursor.moveToNext()){
                 list.add(new ReminderModel(cursor.getString(1).toString(), cursor.getInt(2), cursor.getInt(3), cursor.getInt(0)));

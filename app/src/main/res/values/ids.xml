@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="set_reminder_btn" type="id" />
+    <item name="tv_info_text" type="id" />
+    <item name="bg_drug_image" type="id" />
+</resources>
