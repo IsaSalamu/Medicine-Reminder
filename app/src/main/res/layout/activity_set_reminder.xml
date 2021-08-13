@@ -27,12 +27,136 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Set time"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/week_days"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/drug_name_editText"
         app:layout_constraintVertical_bias="0.05" />
+
+    //the part of choosing medicine days
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week_days"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="16dp"
+        app:layout_constraintBottom_toTopOf="@id/btnSetAlarm"
+        app:layout_constraintTop_toBottomOf="@+id/btnSetTime"
+        tools:layout_editor_absoluteX="30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="medicine_days"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/activity_horizontal_margin" />
+
+
+            <CheckBox
+                android:id="@+id/every_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="every_day" />
+
+            <LinearLayout
+                android:id="@+id/checkbox_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="7">
+
+                <CheckBox
+                    android:id="@+id/dv_sunday"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_day_view"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="S" />
+
+                <CheckBox
+                    android:id="@+id/dv_monday"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_day_view"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="M" />
+
+
+                <CheckBox
+                    android:id="@+id/dv_tuesday"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_day_view"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="T" />
+
+                <CheckBox
+                    android:id="@+id/dv_wednesday"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_day_view"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="W" />
+
+                <CheckBox
+                    android:id="@+id/dv_thursday"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_day_view"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="T" />
+
+                <CheckBox
+                    android:id="@+id/dv_friday"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_day_view"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="F" />
+
+
+                <CheckBox
+                    android:id="@+id/dv_saturday"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_day_view"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="S" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+    //the part ends here
 
     <Button
         android:id="@+id/btnSetAlarm"
@@ -43,7 +167,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSetTime"
+        app:layout_constraintTop_toBottomOf="@+id/week_days"
         app:layout_constraintVertical_bias="0.05" />
 
     <Button

@@ -26,12 +26,16 @@ public class SetReminder extends AppCompatActivity {
     Integer hour, minutes, finalHour, finalMinutes;
     TextView place_text;
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.reminders_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
@@ -44,6 +48,8 @@ public class SetReminder extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,9 +69,13 @@ public class SetReminder extends AppCompatActivity {
                 showData();
             }
         });
+
+
         Calendar calendar = Calendar.getInstance();
         hour = calendar.get(Calendar.HOUR_OF_DAY);
         minutes =calendar.get(Calendar.MINUTE);
+
+
         btnSetTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
