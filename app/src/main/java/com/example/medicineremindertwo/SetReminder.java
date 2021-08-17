@@ -55,7 +55,6 @@ public class SetReminder extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +71,6 @@ public class SetReminder extends AppCompatActivity {
         dv_friday = findViewById(R.id.dv_friday);
         dv_saturday = findViewById(R.id.dv_saturday);
         dv_sunday = findViewById(R.id.dv_sunday);
-
 
         drug_name_editText= (EditText) findViewById(R.id.drug_name_editText);
         btnSetTime = (Button) findViewById(R.id.btnSetTime);
@@ -113,7 +111,6 @@ public class SetReminder extends AppCompatActivity {
                     dv_friday.setChecked(false);
                     dv_saturday.setChecked(false);
                     dv_sunday.setChecked(false);
-
                     listOfSelectedDays.clear();
                 }
             }
