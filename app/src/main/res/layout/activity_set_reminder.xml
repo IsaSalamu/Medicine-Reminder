@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Name"
+        android:hint=" Enter drug name"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +34,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/drug_name_editText"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:drawableLeft="@drawable/ic_baseline_calendar_view_day_24"
+
+        />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/week_days"
@@ -171,7 +175,6 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-    //the part ends here
 
     <Button
         android:id="@+id/btnSetAlarm"
@@ -181,19 +184,26 @@
         android:text="Set Alarm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:drawableLeft="@drawable/ic_baseline_access_alarms_24"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnScheduleAlarm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Schedule Alarm"
+        android:text="Schedule Alarm days"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSetAlarm"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0.05"
+        android:drawableLeft="@drawable/ic_baseline_today_24"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        />
+
 
     <TextView
         android:id="@+id/place_text"

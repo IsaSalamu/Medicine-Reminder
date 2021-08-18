@@ -96,6 +96,7 @@ public class SetReminder extends AppCompatActivity {
                     dv_friday.setChecked(true);
                     dv_saturday.setChecked(true);
                     dv_sunday.setChecked(true);
+  //Add the arrays if the days are selected
                     listOfSelectedDays.add("Sun");
                     listOfSelectedDays.add("Mon");
                     listOfSelectedDays.add("Tue");
@@ -190,12 +191,10 @@ public class SetReminder extends AppCompatActivity {
 
                 } else{
                     listOfSelectedDays.remove(listOfSelectedDays.indexOf(dv_tuesday.getText()));
-
                 }
                 break;
 
-
-            case R.id.dv_wednesday:
+           case R.id.dv_wednesday:
                 if (checked){
                     listOfSelectedDays.add(dv_wednesday.getText().toString());
 
