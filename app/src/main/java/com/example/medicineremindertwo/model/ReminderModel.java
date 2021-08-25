@@ -1,7 +1,7 @@
 package com.example.medicineremindertwo.model;
 
 public class ReminderModel {
-    String drugName;
+    public String drugName;
     Integer hour, minutes, id;
 
 
@@ -45,4 +45,3 @@ public class ReminderModel {
         this.minutes = minutes;
     }
 }
-

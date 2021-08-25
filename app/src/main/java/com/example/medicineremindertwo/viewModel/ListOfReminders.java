@@ -1,4 +1,4 @@
-package com.example.medicineremindertwo;
+package com.example.medicineremindertwo.viewModel;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -8,6 +8,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.medicineremindertwo.databaseModels.DatabaseController;
+import com.example.medicineremindertwo.R;
+import com.example.medicineremindertwo.adapters.RemindersAdapter;
+import com.example.medicineremindertwo.model.ReminderModel;
 
 import java.util.ArrayList;
 
@@ -45,4 +50,5 @@ public class ListOfReminders extends AppCompatActivity {
             }
         });
     }
+
 }

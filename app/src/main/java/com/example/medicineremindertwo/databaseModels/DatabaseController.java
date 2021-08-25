@@ -1,4 +1,4 @@
-package com.example.medicineremindertwo;
+package com.example.medicineremindertwo.databaseModels;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;

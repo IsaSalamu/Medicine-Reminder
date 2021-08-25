@@ -1,7 +1,8 @@
-package com.example.medicineremindertwo;
+package com.example.medicineremindertwo.viewModel;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.AlarmClock;
 import android.view.Menu;
@@ -16,10 +17,15 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.medicineremindertwo.databaseModels.DatabaseController;
+import com.example.medicineremindertwo.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+
 
 public class SetReminder extends AppCompatActivity {
     CheckBox every_day,dv_sunday,dv_monday,dv_tuesday,dv_wednesday,dv_thursday,dv_friday,dv_saturday;
@@ -31,8 +37,6 @@ public class SetReminder extends AppCompatActivity {
     String weekDays = "";
 
     ArrayList<String> listOfSelectedDays;
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -81,7 +85,10 @@ public class SetReminder extends AppCompatActivity {
         btnScheduleAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               place_text.setText(getSelectedDays(listOfSelectedDays));
+
+                //               place_text.setText(getSelectedDays(listOfSelectedDays));
+                //                place_text.setText(listOfSelectedDays.get(0).toString());
+
             }
         });
 
@@ -96,7 +103,7 @@ public class SetReminder extends AppCompatActivity {
                     dv_friday.setChecked(true);
                     dv_saturday.setChecked(true);
                     dv_sunday.setChecked(true);
-  //Add the arrays if the days are selected
+                    //Add the arrays if the days are selected
                     listOfSelectedDays.add("Sun");
                     listOfSelectedDays.add("Mon");
                     listOfSelectedDays.add("Tue");
@@ -121,7 +128,6 @@ public class SetReminder extends AppCompatActivity {
         hour = calendar.get(Calendar.HOUR_OF_DAY);
         minutes =calendar.get(Calendar.MINUTE);
 
-
         btnSetTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,26 +144,60 @@ public class SetReminder extends AppCompatActivity {
         });
 
         btnSetAlarm.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
                 String name = drug_name_editText.getText().toString();
+                //now copy you calendar for the other days
+                //                Calendar calWednesday = (Calendar) calendar.clone();
+                //                Calendar calFriday = (Calendar) calendar.clone();
+                //                Calendar calTuesday = (Calendar) calendar.clone();
+                //                Calendar calThursday = (Calendar) calendar.clone();
+                //                Calendar calSaturday = (Calendar) calendar.clone();
+                //                Calendar calSunday = (Calendar) calendar.clone();
+                //
+                //                calendar.set(Calendar.HOUR_OF_DAY, finalHour);
+                //                calendar.set(Calendar.MINUTE, finalMinutes);
+                //                //set week days
+                //                calendar.set(Calendar.DAY_OF_WEEK, 2);
+                //                calWednesday.set(Calendar.DAY_OF_WEEK, 4);
+                //                calFriday.set(Calendar.DAY_OF_WEEK, 6);
+                //                calTuesday.set(Calendar.DAY_OF_WEEK, 3);
+                //                calSaturday.set(Calendar.DAY_OF_WEEK, 7);
+                //                calSunday.set(Calendar.DAY_OF_WEEK, 1);
+
+                //                AlarmManager alarmMgr = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+                //                alarmMgr.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pIntent(SetReminder.this, 7));
+                //                alarmMgr.set(AlarmManager.RTC_WAKEUP, calWednesday.getTimeInMillis(), pIntent(SetReminder.this, 4));
+                //                alarmMgr.set(AlarmManager.RTC_WAKEUP, calFriday.getTimeInMillis(), pIntent(SetReminder.this,6));
+
                 if (!name.isEmpty()){
-                    boolean result = databaseController.insertDrugData(name, finalHour, finalMinutes);
-                    if (result){
-                        drug_name_editText.setText("");
-                        btnSetTime.setText("Set Time");
-//                        Toast.makeText(getApplicationContext(), "Data sent", Toast.LENGTH_SHORT).show();
-                        Intent alarm = new Intent(AlarmClock.ACTION_SET_ALARM);
-                        alarm.putExtra(AlarmClock.EXTRA_HOUR, finalHour);
-                        alarm.putExtra(AlarmClock.EXTRA_MINUTES, finalMinutes);
-                        alarm.putExtra(AlarmClock.EXTRA_MESSAGE, "Take "+name);
-                        startActivity(alarm);
+                    if (!btnSetTime.getText().equals("Set time")){
+                        boolean result = databaseController.insertDrugData(name, finalHour, finalMinutes);
+                        if (result){
+                            drug_name_editText.setText("");
+                            btnSetTime.setText("Set Time");
+                            Toast.makeText(getApplicationContext(), "Alarm set", Toast.LENGTH_SHORT).show();
+                            Intent alarm = new Intent(AlarmClock.ACTION_SET_ALARM);
+                            alarm.putExtra(AlarmClock.EXTRA_HOUR, finalHour);
+                            alarm.putExtra(AlarmClock.EXTRA_MINUTES, finalMinutes);
+                            alarm.putExtra(AlarmClock.EXTRA_MESSAGE, "Take "+name);
+                            startActivity(alarm);
+                        }else {
+                            Toast.makeText(getApplicationContext(), "Data not sent", Toast.LENGTH_SHORT).show();
+                        }
                     }else {
-                        Toast.makeText(getApplicationContext(), "Data not sent", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Please set time", Toast.LENGTH_SHORT).show();
                     }
+                }else {
+                    Toast.makeText(getApplicationContext(), "Please set drug name", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
+
+
+
     }
 
     public void ifAllDaysChecked(){
@@ -170,7 +210,9 @@ public class SetReminder extends AppCompatActivity {
     }
 
     public void onCheckboxClicked(View view){
+
         boolean checked = ((CheckBox) view).isChecked();
+        //        checkIfTimeIsSet();
 
         // Check which checkbox was clicked
         switch(view.getId()) {
@@ -194,7 +236,7 @@ public class SetReminder extends AppCompatActivity {
                 }
                 break;
 
-           case R.id.dv_wednesday:
+            case R.id.dv_wednesday:
                 if (checked){
                     listOfSelectedDays.add(dv_wednesday.getText().toString());
 
@@ -246,4 +288,28 @@ public class SetReminder extends AppCompatActivity {
         }
         return allDays;
     }
+    //this part is under construction
+    public void checkIfTimeIsSet(){
+        if (btnSetTime.getText().equals("Set time")){
+            place_text.setText("Please set time...");
+        }else {
+            place_text.setText("");
+        }
+    }
+
+    public void cloningTime(ArrayList<String> selectedDays, Calendar newCalendar){
+        for (int i=0; i<selectedDays.size(); i++){
+
+        }
+
+    }
+
+
+    //pIntent method
+    //    public static PendingIntent pIntent(Context context, int id){
+    //        Intent intent = new Intent();
+    //        intent.setAction("myAlarm.intent.action.CLOCK");
+    //
+    //        return PendingIntent.getBroadcast(context, id, intent,    PendingIntent.FLAG_UPDATE_CURRENT);
+    //    }
 }

@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicineReminderTwo">
+        <activity android:name=".viewModel.SetReminder"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,11 +20,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SetReminder"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".ListOfReminders"
-            android:parentActivityName=".SetReminder" />
+            android:name=".viewModel.ListOfReminders"
+            android:parentActivityName=".viewModel.SetReminder" />
     </application>
 
 </manifest>

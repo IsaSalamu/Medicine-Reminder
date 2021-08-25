@@ -1,4 +1,4 @@
-package com.example.medicineremindertwo;
+package com.example.medicineremindertwo.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.example.medicineremindertwo.R;
+import com.example.medicineremindertwo.model.ReminderModel;
 
 import java.util.ArrayList;
 
