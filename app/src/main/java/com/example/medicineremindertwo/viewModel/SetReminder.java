@@ -20,11 +20,14 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.medicineremindertwo.databaseModels.DatabaseController;
 import com.example.medicineremindertwo.R;
+import com.example.medicineremindertwo.databaseModels.DatabaseController;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class SetReminder extends AppCompatActivity {
@@ -59,6 +62,9 @@ public class SetReminder extends AppCompatActivity {
         }
     }
 
+    //code to pop up the delete function after long clicked
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,10 +91,12 @@ public class SetReminder extends AppCompatActivity {
         btnScheduleAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //               place_text.setText(getSelectedDays(listOfSelectedDays));
-                //                place_text.setText(listOfSelectedDays.get(0).toString());
-
+                                Set<String> set = new HashSet<>();
+                                set.addAll(listOfSelectedDays);
+                                listOfSelectedDays.clear();
+                                listOfSelectedDays.addAll(set);
+                                Collections.sort(listOfSelectedDays);
+                               place_text.setText(getSelectedDays(listOfSelectedDays));
             }
         });
 
@@ -173,19 +181,24 @@ public class SetReminder extends AppCompatActivity {
 
                 if (!name.isEmpty()){
                     if (!btnSetTime.getText().equals("Set time")){
-                        boolean result = databaseController.insertDrugData(name, finalHour, finalMinutes);
-                        if (result){
-                            drug_name_editText.setText("");
-                            btnSetTime.setText("Set Time");
-                            Toast.makeText(getApplicationContext(), "Alarm set", Toast.LENGTH_SHORT).show();
-                            Intent alarm = new Intent(AlarmClock.ACTION_SET_ALARM);
-                            alarm.putExtra(AlarmClock.EXTRA_HOUR, finalHour);
-                            alarm.putExtra(AlarmClock.EXTRA_MINUTES, finalMinutes);
-                            alarm.putExtra(AlarmClock.EXTRA_MESSAGE, "Take "+name);
-                            startActivity(alarm);
+                        if (listOfSelectedDays.size() > 0 && listOfSelectedDays.get(0).length() >1){
+                            boolean result = databaseController.insertDrugData(name, finalHour, finalMinutes, String.valueOf(listOfSelectedDays));
+                            if (result){
+                                drug_name_editText.setText("");
+                                btnSetTime.setText("Set Time");
+                                Toast.makeText(getApplicationContext(), "Alarm is set", Toast.LENGTH_SHORT).show();
+                                Intent alarm = new Intent(AlarmClock.ACTION_SET_ALARM);
+                                alarm.putExtra(AlarmClock.EXTRA_HOUR, finalHour);
+                                alarm.putExtra(AlarmClock.EXTRA_MINUTES, finalMinutes);
+                                alarm.putExtra(AlarmClock.EXTRA_MESSAGE, "Take "+name);
+                                startActivity(alarm);
+                            }else {
+                                Toast.makeText(getApplicationContext(), "Data not sent", Toast.LENGTH_SHORT).show();
+                            }
                         }else {
-                            Toast.makeText(getApplicationContext(), "Data not sent", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Please set days", Toast.LENGTH_SHORT).show();
                         }
+
                     }else {
                         Toast.makeText(getApplicationContext(), "Please set time", Toast.LENGTH_SHORT).show();
                     }

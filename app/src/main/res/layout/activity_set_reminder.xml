@@ -7,7 +7,7 @@
     android:paddingLeft="30dp"
     android:paddingRight="30dp"
     android:background="@drawable/background"
-    tools:context=".SetReminder">
+    tools:context=".viewModel.SetReminder">
 
     <EditText
         android:id="@+id/drug_name_editText"
