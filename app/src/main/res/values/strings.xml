@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">Medicine Reminder</string>
+    <string-array name="drugs">
+        <item>Amoxicillin</item>
+        <item>Doxycycline</item>
+        <item>Cephalexin</item>
+        <item>Clindamycin</item>
+        <item>Metronidazole</item>
+        <item>Azithromycin</item>
+        <item>Ciprofloxacin</item>
+        <item>Melatonin</item>
+        <item>Lyrica</item>
+        <item>Loratadine</item>
+        <item>Lofexidine</item>
+        <item>Lisinopril</item>
+        <item>Ciprofloxacin</item>
+        <item>Farxiga</item>
+        <item> Entyvio</item>
+        <item> Entresto</item>
+        <item>Dupixent</item>
+        <item>Cymbalta</item>
+        <item>Clonazepam</item>
+        <item>Clindamycin</item>
+        <item>Citalopram</item>
+        <item>Ciprofloxacin</item>
+    </string-array>
 </resources>

@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -33,12 +33,12 @@ import java.util.Set;
 public class SetReminder extends AppCompatActivity {
     CheckBox every_day,dv_sunday,dv_monday,dv_tuesday,dv_wednesday,dv_thursday,dv_friday,dv_saturday;
     DatabaseController databaseController;
-    EditText drug_name_editText;
+    Spinner drug_name_sp;
     Button btnSetTime, btnSetAlarm, btnScheduleAlarm;
     Integer hour, minutes, finalHour, finalMinutes;
     TextView place_text;
     String weekDays = "";
-
+    String drug_name;
     ArrayList<String> listOfSelectedDays;
 
     @Override
@@ -82,7 +82,7 @@ public class SetReminder extends AppCompatActivity {
         dv_saturday = findViewById(R.id.dv_saturday);
         dv_sunday = findViewById(R.id.dv_sunday);
 
-        drug_name_editText= (EditText) findViewById(R.id.drug_name_editText);
+        drug_name_sp= (Spinner) findViewById(R.id.drug_name_sp);
         btnSetTime = (Button) findViewById(R.id.btnSetTime);
         btnSetAlarm = (Button) findViewById(R.id.btnSetAlarm);
         btnScheduleAlarm = (Button) findViewById(R.id.btnScheduleAlarm);
@@ -155,7 +155,7 @@ public class SetReminder extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                String name = drug_name_editText.getText().toString();
+
                 //now copy you calendar for the other days
                 //                Calendar calWednesday = (Calendar) calendar.clone();
                 //                Calendar calFriday = (Calendar) calendar.clone();
@@ -179,18 +179,19 @@ public class SetReminder extends AppCompatActivity {
                 //                alarmMgr.set(AlarmManager.RTC_WAKEUP, calWednesday.getTimeInMillis(), pIntent(SetReminder.this, 4));
                 //                alarmMgr.set(AlarmManager.RTC_WAKEUP, calFriday.getTimeInMillis(), pIntent(SetReminder.this,6));
 
-                if (!name.isEmpty()){
+                if (true){
+                    drug_name = drug_name_sp.getSelectedItem().toString();
                     if (!btnSetTime.getText().equals("Set time")){
                         if (listOfSelectedDays.size() > 0 && listOfSelectedDays.get(0).length() >1){
-                            boolean result = databaseController.insertDrugData(name, finalHour, finalMinutes, String.valueOf(listOfSelectedDays));
+                            boolean result = databaseController.insertDrugData(drug_name, finalHour, finalMinutes, String.valueOf(listOfSelectedDays));
                             if (result){
-                                drug_name_editText.setText("");
+
                                 btnSetTime.setText("Set Time");
-                                Toast.makeText(getApplicationContext(), "Alarm is set", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Alarm is set for"+drug_name.toString(), Toast.LENGTH_SHORT).show();
                                 Intent alarm = new Intent(AlarmClock.ACTION_SET_ALARM);
                                 alarm.putExtra(AlarmClock.EXTRA_HOUR, finalHour);
                                 alarm.putExtra(AlarmClock.EXTRA_MINUTES, finalMinutes);
-                                alarm.putExtra(AlarmClock.EXTRA_MESSAGE, "Take "+name);
+                                alarm.putExtra(AlarmClock.EXTRA_MESSAGE, "Take "+drug_name);
                                 startActivity(alarm);
                             }else {
                                 Toast.makeText(getApplicationContext(), "Data not sent", Toast.LENGTH_SHORT).show();
@@ -208,8 +209,6 @@ public class SetReminder extends AppCompatActivity {
                 }
             }
         });
-
-
 
     }
 
