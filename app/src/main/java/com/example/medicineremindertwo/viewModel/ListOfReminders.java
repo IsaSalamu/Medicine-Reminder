@@ -110,6 +110,7 @@ public class ListOfReminders extends AppCompatActivity {
                         }
                     }});
                 adb.show();
+                adapter.notifyDataSetChanged();
                 return true;
             }
         });

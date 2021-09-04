@@ -10,208 +10,198 @@
     tools:context=".viewModel.SetReminder">
 
     //the part of choosing medicine days
-
-    <Spinner
-        android:gravity="center"
-        android:id="@+id/drug_name_sp"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/drugs"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1"
-        />
-    <Button
-        android:id="@+id/btnSetTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Set time"
-        app:layout_constraintBottom_toTopOf="@id/week_days"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/drug_name_sp"
-        app:layout_constraintVertical_bias="0.0"
-        style="@style/Widget.MaterialComponents.Button.Icon"
-        android:drawableLeft="@drawable/ic_baseline_calendar_view_day_24"
-        />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/week_days"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="2dp"
-        app:cardUseCompatPadding="true"
-        app:contentPadding="16dp"
-        app:layout_constraintBottom_toTopOf="@id/btnSetAlarm"
-        app:layout_constraintTop_toBottomOf="@+id/btnSetTime"
-        tools:layout_editor_absoluteX="10dp">
-
-        <LinearLayout
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <TextView
+            <Spinner
+                android:gravity="center"
+                android:id="@+id/drug_name_sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="medicine_days"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/activity_horizontal_margin" />
+                android:entries="@array/drugs"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.1"
+                />
+            <Button
+                android:id="@+id/btnSetTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Set time"
+                app:layout_constraintBottom_toTopOf="@id/week_days"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/drug_name_sp"
+                app:layout_constraintVertical_bias="0.0"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:drawableLeft="@drawable/ic_baseline_calendar_view_day_24"
+                />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/week_days"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true"
+                app:contentPadding="16dp"
+                app:layout_constraintBottom_toTopOf="@id/btnSetAlarm"
+                app:layout_constraintTop_toBottomOf="@+id/btnSetTime"
+                tools:layout_editor_absoluteX="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="medicine_days"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/activity_horizontal_margin" />
 
 
-            <CheckBox
-                android:id="@+id/every_day"
+                    <CheckBox
+                        android:id="@+id/every_day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="every_day" />
+
+                    <LinearLayout
+                        android:id="@+id/checkbox_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="7">
+
+                        <CheckBox
+                            android:id="@+id/dv_sunday"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/background_day_view"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:onClick="onCheckboxClicked"
+                            android:text="Sun"
+                            tools:ignore="UsingOnClickInXml" />
+
+                        <CheckBox
+                            android:id="@+id/dv_monday"
+                            android:onClick="onCheckboxClicked"
+
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/background_day_view"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="Mon" />
+
+
+                        <CheckBox
+                            android:id="@+id/dv_tuesday"
+                            android:onClick="onCheckboxClicked"
+
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/background_day_view"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="Tue" />
+
+                        <CheckBox
+                            android:id="@+id/dv_wednesday"
+                            android:onClick="onCheckboxClicked"
+
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/background_day_view"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="Wed" />
+
+                        <CheckBox
+                            android:id="@+id/dv_thursday"
+                            android:onClick="onCheckboxClicked"
+
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/background_day_view"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="Thu" />
+
+                        <CheckBox
+                            android:id="@+id/dv_friday"
+                            android:onClick="onCheckboxClicked"
+
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/background_day_view"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="Fri" />
+
+
+                        <CheckBox
+                            android:id="@+id/dv_saturday"
+                            android:onClick="onCheckboxClicked"
+
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/background_day_view"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="Sat" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btnSetAlarm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="200dp"
+                android:text="Set Reminder"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:drawableLeft="@drawable/ic_baseline_access_alarms_24"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/place_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:text="every_day" />
-
-            <LinearLayout
-                android:id="@+id/checkbox_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="7">
-
-                <CheckBox
-                    android:id="@+id/dv_sunday"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/background_day_view"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:onClick="onCheckboxClicked"
-                    android:text="Sun"
-                    tools:ignore="UsingOnClickInXml" />
-
-                <CheckBox
-                    android:id="@+id/dv_monday"
-                    android:onClick="onCheckboxClicked"
-
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/background_day_view"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="Mon" />
-
-
-                <CheckBox
-                    android:id="@+id/dv_tuesday"
-                    android:onClick="onCheckboxClicked"
-
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/background_day_view"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="Tue" />
-
-                <CheckBox
-                    android:id="@+id/dv_wednesday"
-                    android:onClick="onCheckboxClicked"
-
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/background_day_view"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="Wed" />
-
-                <CheckBox
-                    android:id="@+id/dv_thursday"
-                    android:onClick="onCheckboxClicked"
-
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/background_day_view"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="Thu" />
-
-                <CheckBox
-                    android:id="@+id/dv_friday"
-                    android:onClick="onCheckboxClicked"
-
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/background_day_view"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="Fri" />
-
-
-                <CheckBox
-                    android:id="@+id/dv_saturday"
-                    android:onClick="onCheckboxClicked"
-
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/background_day_view"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="Sat" />
-            </LinearLayout>
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <Button
-        android:id="@+id/btnSetAlarm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="200dp"
-        android:text="Set Alarm"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:drawableLeft="@drawable/ic_baseline_access_alarms_24"
-        style="@style/Widget.MaterialComponents.Button.Icon"
-
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnScheduleAlarm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Schedule Alarm days"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSetAlarm"
-        app:layout_constraintVertical_bias="0.05"
-        android:drawableLeft="@drawable/ic_baseline_today_24"
-        style="@style/Widget.MaterialComponents.Button.Icon"
-        />
-
-
-    <TextView
-        android:id="@+id/place_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnScheduleAlarm"
-        app:layout_constraintVertical_bias="0.05"
-        />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnScheduleAlarm"
+                app:layout_constraintVertical_bias="0.05"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
